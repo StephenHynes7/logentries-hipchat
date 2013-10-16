@@ -15,7 +15,7 @@ post '/alert' do
   puts params
   payload = JSON.parse(params[:payload])
   puts payload
-  message = "Alert %s from Log %s , event %s occured" %  [payload['alert']['name']payload['log']['name'],payload['event']['m']]
+  message = "Alert %s from Log %s , event %s occured" % [payload['alert']['name'],payload['log']['name'],payload['event']['m']]
   puts message
   client[room_id].send(username, message, color: 'red', notify: 1)
 end
