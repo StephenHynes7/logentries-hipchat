@@ -1,9 +1,9 @@
 require 'sinatra'
 
-api_token = ENV['HIPCHAT_TOKEN']
+api_token = '3d17951ccd1b5ab63a79f45137d033'
 client = HipChat::Client.new(api_token)
-room_id = ENV['HIPCHAT_ROOM_ID']
-username = 'Logentries'
+room_id ='310310'
+username = 'StephenHynes'
 
 get '/' do
   puts "Hello World!"
@@ -17,5 +17,5 @@ post '/alert' do
   puts payload
   message = "%s: %s" % [payload['alert']['name'], payload['event']['m']]
   puts message
-  client[room_id].send(username, message, color: 'red', notify: 1)
+  client[room_id].send(username, 'test', color: 'red', notify: 1)
 end
