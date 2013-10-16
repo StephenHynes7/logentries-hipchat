@@ -1,9 +1,9 @@
 require 'sinatra'
 
-api_token = '3d17951ccd1b5ab63a79f45137d033'
+api_token = 'API_VERSION_ONE_TOKEN'
 client = HipChat::Client.new(api_token)
-room_id ='310310'
-username = 'StephenHynes'
+room_id ='ROOM_ID'
+username = 'Mention_Name'
 
 get '/' do
   puts "Hello World!"
@@ -15,7 +15,7 @@ post '/alert' do
   puts params
   payload = JSON.parse(params[:payload])
   puts payload
-  message = "Alert %s from Log %s , event %s ,occured" % [payload['alert']['name'], payload['log']['name'], payload['event']['m']]
+  message = "Alert %s from Log %s , event %s , occured" % [payload['alert']['name'], payload['log']['name'], payload['event']['m']]
   puts message
   client[room_id].send(username, message, color: 'red', notify: 1)
 end
